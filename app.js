@@ -174,6 +174,9 @@
     session.index++;
     session.flipped = false;
     renderCard();
+    // A focused Known/Still learning button would treat the next Space as a click
+    // (marking again) instead of a flip, so hand focus back to the card.
+    $('card').focus();
   }
 
   function finishReview() {
