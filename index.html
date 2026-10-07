@@ -34,7 +34,7 @@
 
     <section id="review-view" hidden>
       <div id="review-setup">
-        <label class="inline">
+        <label class="inline" id="only-learning-label" hidden>
           <input type="checkbox" id="only-learning"> Only cards I'm still learning
         </label>
         <button id="start-review" class="primary" type="button">Start review</button>
@@ -46,7 +46,8 @@
           <span id="card-side" class="side"></span>
           <p id="card-text"></p>
         </div>
-        <p class="muted hint">Click the card or press <kbd>Space</kbd> to flip</p>
+        <button id="btn-flip" class="flip" type="button">Flip card <kbd>Space</kbd></button>
+        <p class="muted hint">or click the card</p>
         <div class="actions">
           <button id="btn-learning" class="warn" type="button">Still learning <kbd>L</kbd></button>
           <button id="btn-known" class="good" type="button">Known <kbd>K</kbd></button>

@@ -128,7 +128,8 @@
     $('review-session').hidden = true;
     $('review-done').hidden = true;
     const learningCount = deck.filter((c) => c.status === 'learning').length;
-    $('only-learning').disabled = learningCount === 0;
+    // Only offer the filter when there is something to filter to.
+    $('only-learning-label').hidden = learningCount === 0;
     if (learningCount === 0) $('only-learning').checked = false;
     $('start-review').disabled = deck.length === 0;
     $('start-review').title = deck.length ? '' : 'Add some cards first';
@@ -154,7 +155,8 @@
     const card = currentCard();
     if (!card) return finishReview();
     $('progress').textContent = `Card ${session.index + 1} of ${session.queue.length}`;
-    $('card').classList.toggle('flipped', session.flipped);
+    $('card').classList.toggle('answer', session.flipped);
+    $('card').classList.toggle('question', !session.flipped);
     $('card-side').textContent = session.flipped ? 'Answer' : 'Question';
     $('card-text').textContent = session.flipped ? card.a : card.q;
   }
@@ -190,6 +192,7 @@
   $('start-review').addEventListener('click', startReview);
   $('restart').addEventListener('click', resetReview);
   $('card').addEventListener('click', flip);
+  $('btn-flip').addEventListener('click', flip);
   $('btn-known').addEventListener('click', () => mark('known'));
   $('btn-learning').addEventListener('click', () => mark('learning'));
 
