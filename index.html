@@ -5,6 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Flashcards</title>
   <link rel="stylesheet" href="style.css">
+  <script>
+    // Apply the saved theme before first paint to avoid a flash.
+    try {
+      const t = localStorage.getItem('flashcards.theme.v1');
+      if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    } catch {}
+  </script>
 </head>
 <body>
   <header>
@@ -12,6 +19,7 @@
     <nav>
       <button id="tab-deck" class="tab active" type="button">Deck</button>
       <button id="tab-review" class="tab" type="button">Review</button>
+      <button id="theme-toggle" type="button"></button>
     </nav>
   </header>
 
