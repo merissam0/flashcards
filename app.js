@@ -1,6 +1,28 @@
 (() => {
   const STORAGE_KEY = 'flashcards.deck.v1';
+  const THEME_KEY = 'flashcards.theme.v1';
   const $ = (id) => document.getElementById(id);
+
+  // ---------- Theme ----------
+  // No saved choice means follow the system preference.
+  const systemDark = window.matchMedia('(prefers-color-scheme: dark)');
+  const currentTheme = () =>
+    document.documentElement.dataset.theme || (systemDark.matches ? 'dark' : 'light');
+  function renderThemeToggle() {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    $('theme-toggle').textContent = next === 'dark' ? 'Dark mode' : 'Light mode';
+    $('theme-toggle').setAttribute('aria-label', `Switch to ${next} mode`);
+  }
+  $('theme-toggle').addEventListener('click', () => {
+    const next = currentTheme() === 'dark' ? 'light' : 'dark';
+    document.documentElement.dataset.theme = next;
+    try {
+      localStorage.setItem(THEME_KEY, next);
+    } catch {}
+    renderThemeToggle();
+  });
+  systemDark.addEventListener('change', renderThemeToggle);
+  renderThemeToggle();
 
   // ---------- Storage ----------
   function load() {
