@@ -5,6 +5,8 @@
   --muted: #6b7185;
   --border: #dde1ec;
   --accent: #4f5bd5;
+  --question: #4f5bd5;
+  --answer: #0e8f9c;
   --good: #1f9d63;
   --warn: #d9822b;
 }
@@ -16,6 +18,8 @@
     --muted: #9399ae;
     --border: #2d3142;
     --accent: #8089f0;
+    --question: #8089f0;
+    --answer: #3cc3d1;
   }
 }
 
@@ -99,10 +103,25 @@ li.editing { display: grid; gap: 10px; }
   cursor: pointer;
   user-select: none;
 }
-.card.flipped { border-color: var(--accent); }
+.card.question { border-color: var(--question); }
+.card.answer { border-color: var(--answer); }
 .card p { font-size: 1.3rem; margin: 8px 0 0; white-space: pre-wrap; }
-.side { font-size: .75rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
-.hint { text-align: center; font-size: .85rem; }
+.side { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+.card.question .side { color: var(--question); }
+.card.answer .side { color: var(--answer); }
+button.flip {
+  display: block;
+  width: 100%;
+  margin: 14px 0 0;
+  padding: 12px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  background: transparent;
+  color: var(--accent);
+  border: 2px solid var(--accent);
+}
+button.flip:hover { background: var(--accent); color: #fff; }
+.hint { text-align: center; font-size: .85rem; margin: 6px 0 14px; }
 .actions { display: flex; gap: 12px; justify-content: center; }
 kbd {
   font: inherit; font-size: .75rem;
