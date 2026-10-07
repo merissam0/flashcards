@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flashcards</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Flashcards</h1>
+    <nav>
+      <button id="tab-deck" class="tab active" type="button">Deck</button>
+      <button id="tab-review" class="tab" type="button">Review</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="deck-view">
+      <form id="add-form" autocomplete="off">
+        <label>Question
+          <textarea id="add-q" rows="2" required></textarea>
+        </label>
+        <label>Answer
+          <textarea id="add-a" rows="2" required></textarea>
+        </label>
+        <button type="submit" class="primary">Add card</button>
+      </form>
+
+      <p id="stats" class="muted"></p>
+      <ul id="card-list"></ul>
+      <p id="empty" class="muted" hidden>No cards yet. Add your first one above.</p>
+    </section>
+
+    <section id="review-view" hidden>
+      <div id="review-setup">
+        <label class="inline">
+          <input type="checkbox" id="only-learning"> Only cards I'm still learning
+        </label>
+        <button id="start-review" class="primary" type="button">Start review</button>
+      </div>
+
+      <div id="review-session" hidden>
+        <p id="progress" class="muted"></p>
+        <div id="card" class="card" role="button" tabindex="0" aria-live="polite">
+          <span id="card-side" class="side"></span>
+          <p id="card-text"></p>
+        </div>
+        <p class="muted hint">Click the card or press <kbd>Space</kbd> to flip</p>
+        <div class="actions">
+          <button id="btn-learning" class="warn" type="button">Still learning <kbd>L</kbd></button>
+          <button id="btn-known" class="good" type="button">Known <kbd>K</kbd></button>
+        </div>
+      </div>
+
+      <div id="review-done" hidden>
+        <h2>Done!</h2>
+        <p id="done-summary"></p>
+        <button id="restart" class="primary" type="button">Back to setup</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
